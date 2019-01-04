@@ -3,6 +3,8 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Link, withRouter } from 'react-router-dom';
 
+import query from '../queries/fetchSongs';
+
 class SongCreate extends Component {
   constructor(props){
     super(props);
@@ -25,7 +27,8 @@ class SongCreate extends Component {
     this.props.mutate({
       variables: {
         title: this.state.title
-      }
+      },
+      refetchQueries: [{ query }]
     }).then(() => this.props.history.push("/"))
   }
 
